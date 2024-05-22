@@ -23,6 +23,24 @@ function App() {
     inputRef.current.focus();
   }, []);
 
+  // function to get the country name from country code using the REST Countries API
+  const getCountryName = async (countryCode) => {
+    try {
+      const response = await fetch(
+        `https://restcountries.com/v3.1/alpha/${countryCode}`
+      );
+      const data = await response.json();
+      if (data && data.length > 0) {
+        return data[0].name.common;
+      } else {
+        throw new Error("Country not found");
+      }
+    } catch (error) {
+      console.error("Error fetching country name:", error);
+      return null;
+    }
+  };
+
   // function to get the nationality of a name using the nationalize.io API
   const getNationality = async () => {
     setLoading(true);
@@ -31,9 +49,15 @@ function App() {
       const response = await fetch(`https://api.nationalize.io/?name=${name}`);
       const data = await response.json();
       if (data && data.country && data.country.length > 0) {
-        setNationality(data.country[0]);
-        setPredictedName(name);
-        setName("");
+        const country = data.country[0];
+        const countryName = await getCountryName(country.country_id);
+        if (countryName) {
+          setNationality({ ...country, country_name: countryName });
+          setPredictedName(name);
+          setName("");
+        } else {
+          setError("Error fetching country name.");
+        }
       } else {
         setNationality(null);
         setError("No nationality data found.");
@@ -58,7 +82,6 @@ function App() {
   };
 
   return (
-    // <div className="App">
     <Container className="mt-5">
       <Row className="justify-content-md-center">
         <Col md={6}>
@@ -97,7 +120,7 @@ function App() {
                 </Card.Title>
                 <hr />
                 <Card.Text className="text-center">
-                  <strong>Nationality:</strong> {nationality.country_id}
+                  <strong>Nationality:</strong> {nationality.country_name}
                 </Card.Text>
                 <Card.Text className="text-center">
                   <strong>Probability:</strong>{" "}
@@ -109,7 +132,6 @@ function App() {
         </Col>
       </Row>
     </Container>
-    // </div>
   );
 }
 
