@@ -1,8 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./App.css";
+
 function App() {
   const [name, setName] = useState("");
   const [nationality, setNationality] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [predictedName, setPredictedName] = useState("");
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -10,19 +14,24 @@ function App() {
   }, []);
 
   const getNationality = async () => {
+    setLoading(true);
+    setError(null);
     try {
-      const response = await fetch(
-        `https://api.nationalize.io/?name=${name}&api_key=${process.env.REACT_APP_API_KEY}`
-      );
+      const response = await fetch(`https://api.nationalize.io/?name=${name}`);
       const data = await response.json();
       if (data && data.country && data.country.length > 0) {
         setNationality(data.country[0]);
+        setPredictedName(name);
+        setName("");
       } else {
         setNationality(null);
+        setError("No nationality data found.");
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching nationality:", error);
+      setError("Error fetching nationality.");
     }
+    setLoading(false);
   };
 
   const pressEnter = (event) => {
@@ -41,11 +50,15 @@ function App() {
         value={name}
         onChange={(e) => setName(e.target.value)}
         onKeyDown={pressEnter}
+        disabled={loading}
       />
-      <button onClick={getNationality}>Predict Nationality</button>
+      <button onClick={getNationality} disabled={loading}>
+        {loading ? "Predicting..." : "Predict Nationality"}
+      </button>
+      {error && <div className="error">{error}</div>}
       {nationality && (
         <div>
-          <h2>Result:</h2>
+          <h2>Result for {predictedName}:</h2>
           <p>Nationality: {nationality.country_id}</p>
           <p>Probability: {(nationality.probability * 100).toFixed(2)}%</p>
         </div>
