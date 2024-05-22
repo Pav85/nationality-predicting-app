@@ -5,12 +5,24 @@ function App() {
   const [nationality, setNationality] = useState(null);
   const inputRef = useRef(null);
 
-  // useEffect(() => {
-  //   inputRef.current.focus();
-  // }, []);
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   const getNationality = async () => {
-    console.log("function called");
+    try {
+      const response = await fetch(
+        `https://api.nationalize.io/?name=${name}&api_key=${process.env.REACT_APP_API_KEY}`
+      );
+      const data = await response.json();
+      if (data && data.country && data.country.length > 0) {
+        setNationality(data.country[0]);
+      } else {
+        setNationality(null);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
