@@ -13,6 +13,7 @@ This React application predicts the nationality of a given name using the Nation
 
 - **[Installation](#installation)**
 - **[Deployment](#deployment)**
+- **[Resources](#resources)**
 - **[Usage](#usage)**
 - **[Contributing](#contributing)**
 - **[Questions](#questions)**
@@ -28,6 +29,17 @@ npm install
 
 ## Deployment
 
+Visit the live site here: [Nationality Predicting App](https://pav85.github.io/nationality-predicting-app/)
+
+Here's a preview of the portfolio:
+
+![Nationality Predicting App Showcase](/src/assets/screenshot.png)
+
+## Resources
+
+- [Nationalize.io API](https://nationalize.io/) for predicting the nationality of a name.
+- [REST Countries API](https://restcountries.com/) for retrieving full country names from country codes.
+- [React Bootstrap](https://react-bootstrap.github.io/) for styling and UI components.
 
 
 ## Usage
@@ -46,4 +58,9 @@ Fork this repository and submit a pull request to contribute.
 
 ## Questions
 
-For inquiries, please open an issue or contact me at
+For inquiries, please open an issue or contact me at pawel.werbowy@gmail.com. 
+Check out more of my work at [GitHub - Pav85](https://github.com/Pav85).
+
+## License
+
+This project is licensed under the MIT license.
