@@ -12,6 +12,7 @@ This React application predicts the nationality of a given name using the Nation
 ## Table of Contents
 
 - **[Installation](#installation)**
+- **[Deployment](#deployment)**
 - **[Usage](#usage)**
 - **[Contributing](#contributing)**
 - **[Questions](#questions)**
@@ -24,6 +25,11 @@ To install the necessary dependencies, run the following command:
 ```
 npm install
 ```
+
+## Deployment
+
+
+
 ## Usage
 
 To start the application, run the following command:

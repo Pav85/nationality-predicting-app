@@ -1,5 +1,6 @@
 {
   "name": "nationality-predicting-app",
+  "homepage": "https://pav85.github.io/nationality-predicting-app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
