@@ -85,7 +85,7 @@ function App() {
     <Container className="mt-5">
       <Row className="justify-content-md-center">
         <Col md={6}>
-          <h1 className="text-center mb-3">Nationality Predictor</h1>
+          <h1 className="text-center mb-3">Where Does Your Name Come From?</h1>
           <Form>
             <Form.Group controlId="formName">
               <Form.Control
