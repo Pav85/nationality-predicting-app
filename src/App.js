@@ -25,6 +25,12 @@ function App() {
     }
   };
 
+  const pressEnter = (event) => {
+    if (event.keyCode === 13) {
+      getNationality();
+    }
+  };
+
   return (
     <div className="App">
       <h1>Let's predict nationality</h1>
@@ -34,6 +40,7 @@ function App() {
         placeholder="Enter name or surname"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        onKeyDown={pressEnter}
       />
       <button onClick={getNationality}>Predict Nationality</button>
       {nationality && (
