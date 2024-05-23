@@ -40,6 +40,8 @@ Here's a preview of the portfolio:
 
 ![Nationality Predicting App Showcase](/src/assets/screenshot.png)
 
+![Nationality Predicting App Showcase](/src/assets/screenshot2.png)
+
 ## Resources
 
 - [Nationalize.io API](https://nationalize.io/) for predicting the nationality of a name.
