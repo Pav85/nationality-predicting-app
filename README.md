@@ -26,6 +26,11 @@ To install the necessary dependencies, run the following command:
 ```
 npm install
 ```
+You need to obtain your own API key for the Nationalize.io API. Create a .env file in the root directory of your project and add your API key:
+
+```
+REACT_APP_API_KEY=your_api_key_here
+```
 
 ## Deployment
 
