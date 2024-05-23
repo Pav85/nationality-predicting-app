@@ -8,7 +8,6 @@ import {
   Alert,
   Card,
 } from "react-bootstrap";
-// import "./App.css";
 
 function App() {
   const [name, setName] = useState("");
